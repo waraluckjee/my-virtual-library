@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public AI Virtual Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans">
+
+    <header class="bg-blue-600 text-white py-10 px-4 text-center shadow-lg">
+        <h1 class="text-4xl font-bold mb-4">คลังความรู้ AI เพื่อประชาชน</h1>
+        <p class="mb-6 text-blue-100">รวม PDF, วิดีโอ, และเกมฝึกทักษะ AI ฟรี</p>
+        <div class="max-w-xl mx-auto relative">
+            <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="ค้นหาบทความ, วิดีโอ, หรือชื่อเกม..." 
+                class="w-full p-4 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300 shadow-md">
+            <i class="fa fa-search absolute right-5 top-5 text-gray-400"></i>
+        </div>
+    </header>
+
+    <div class="flex justify-center gap-4 py-6 flex-wrap">
+        <button onclick="filterSelection('all')" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-full">ทั้งหมด</button>
+        <button onclick="filterSelection('pdf')" class="bg-white border border-blue-500 text-blue-500 hover:bg-blue-50 px-4 py-2 rounded-full">หนังสือ PDF</button>
+        <button onclick="filterSelection('video')" class="bg-white border border-blue-500 text-blue-500 hover:bg-blue-50 px-4 py-2 rounded-full">วิดีโอ</button>
+        <button onclick="filterSelection('game')" class="bg-white border border-blue-500 text-blue-500 hover:bg-blue-50 px-4 py-2 rounded-full">เกมฝึกทักษะ</button>
+    </div>
+
+    <main class="max-w-6xl mx-auto p-4">
+        <div id="contentGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <div class="card bg-white rounded-xl shadow-md overflow-hidden filter-item pdf">
+                <div class="p-6">
+                    <span class="text-xs font-bold text-red-500 uppercase tracking-wide">PDF E-Book</span>
+                    <h3 class="text-xl font-semibold mt-2">คู่มือเริ่มต้นใช้งาน ChatGPT</h3>
+                    <p class="text-gray-600 mt-2 text-sm">เจาะลึกการเขียน Prompt ให้เหมือนมือโปร สำหรับผู้เริ่มต้น...</p>
+                    <a href="#" class="inline-block mt-4 text-blue-600 font-bold hover:underline">อ่านเพิ่มเติม →</a>
+                </div>
+            </div>
+
+            <div class="card bg-white rounded-xl shadow-md overflow-hidden filter-item video">
+                <div class="p-6">
+                    <span class="text-xs font-bold text-green-500 uppercase tracking-wide">Video Course</span>
+                    <h3 class="text-xl font-semibold mt-2">AI ทำงานแทนเราได้อย่างไร?</h3>
+                    <p class="text-gray-600 mt-2 text-sm">บรรยายเรื่องทิศทางเทคโนโลยี AI ในปี 2026 โดยผู้เชี่ยวชาญ...</p>
+                    <a href="#" class="inline-block mt-4 text-green-600 font-bold hover:underline">รับชมวิดีโอ →</a>
+                </div>
+            </div>
+
+            <div class="card bg-white rounded-xl shadow-md overflow-hidden filter-item game">
+                <div class="p-6">
+                    <span class="text-xs font-bold text-purple-500 uppercase tracking-wide">AI Knowledge Game</span>
+                    <h3 class="text-xl font-semibold mt-2">The Prompting Maze</h3>
+                    <p class="text-gray-600 mt-2 text-sm">เกมเขาวงกตที่ต้องใช้คำสั่ง AI ในการแก้ปริศนาเพื่อหาทางออก</p>
+                    <a href="#" class="inline-block mt-4 text-purple-600 font-bold hover:underline">เริ่มเล่นเกม →</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // ระบบค้นหา
+        function searchFunction() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('filter-item');
+            
+            for (let i = 0; i < cards.length; i++) {
+                let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+                if (title.includes(input)) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+
+        // ระบบกรองประเภท
+        function filterSelection(category) {
+            let cards = document.getElementsByClassName('filter-item');
+            if (category == 'all') category = '';
+            for (let i = 0; i < cards.length; i++) {
+                if (cards[i].className.indexOf(category) > -1) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
