@@ -9,227 +9,237 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap');
-        body { font-family: 'Kanit', sans-serif; scroll-behavior: smooth; }
-        .sidebar-sticky { position: sticky; top: 100px; height: fit-content; }
-        .gradient-brand { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
-        .card-inner-shadow { box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05); }
+        body { font-family: 'Kanit', sans-serif; background-color: #f8fafc; scroll-behavior: smooth; }
+        .sidebar-sticky { position: sticky; top: 100px; }
+        .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+        .btn-grad { background: linear-gradient(to right, #4f46e5, #7c3aed); transition: 0.3s; }
+        .btn-grad:hover { opacity: 0.9; transform: translateY(-2px); }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="text-slate-800">
 
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200 py-4 px-6">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <nav class="fixed w-full z-50 glass-nav border-b border-slate-200 py-4 px-6">
+        <div class="max-w-[1440px] mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
-                <div class="bg-indigo-600 text-white p-2 rounded-lg"><i class="fas fa-lightbulb"></i></div>
-                <span class="text-xl font-bold text-indigo-900 tracking-tight">DO-LEARN</span>
+                <div class="bg-indigo-600 text-white p-2 rounded-xl shadow-lg"><i class="fas fa-rocket"></i></div>
+                <span class="text-xl font-bold text-indigo-900 tracking-tighter uppercase">DO-LEARN</span>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium">
-                <a href="#learning" class="hover:text-indigo-600 transition">คลังเรียนรู้</a>
-                <a href="#stats" class="hover:text-indigo-600 transition">สถิติ</a>
+            <div class="hidden lg:flex gap-8 text-sm font-medium">
+                <a href="#home" class="hover:text-indigo-600 transition">หน้าแรก</a>
+                <a href="#content" class="hover:text-indigo-600 transition">คลังความรู้</a>
+                <a href="#stats" class="hover:text-indigo-600 transition">สถิติสะสม</a>
                 <a href="#verify" class="bg-indigo-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition">ตรวจสอบรายชื่อ</a>
             </div>
         </div>
     </nav>
 
-    <header class="pt-32 pb-20 px-6 gradient-brand text-white">
-        <div class="max-w-7xl mx-auto flex flex-col items-center text-center">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">เรียนรู้อย่างสร้างสรรค์กับ <span class="text-indigo-200">DO-LEARN</span></h1>
-            <p class="text-indigo-100 max-w-2xl mb-8 font-light">แหล่งรวมความรู้ AI แบบทดสอบออนไลน์ และกิจกรรมเสริมทักษะสำหรับทุกคน เข้าถึงง่าย ฟรี และทันสมัย</p>
-            <div class="w-full max-w-xl relative">
-                <input type="text" id="globalSearch" onkeyup="searchContent()" placeholder="ค้นหาบทเรียน หรือแบบทดสอบ..." 
-                    class="w-full p-4 pl-12 rounded-2xl text-slate-900 shadow-xl focus:outline-none focus:ring-4 focus:ring-white/20">
+    <header id="home" class="pt-32 pb-20 px-6 bg-slate-900 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-indigo-600/10 skew-x-12 translate-x-20"></div>
+        <div class="max-w-[1440px] mx-auto relative z-10">
+            <h1 class="text-4xl md:text-5xl font-black mb-4">เรียนรู้อย่างสร้างสรรค์กับ <span class="text-indigo-400">DO-LEARN</span></h1>
+            <p class="text-slate-400 text-lg mb-8 max-w-2xl font-light">แหล่งรวมความรู้ AI แบบทดสอบออนไลน์ และกิจกรรมเสริมทักษะสำหรับทุกคน เข้าถึงง่าย ฟรี และทันสมัย</p>
+            <div class="relative max-w-2xl">
+                <input type="text" id="globalSearch" onkeyup="searchContent()" placeholder="ค้นหาบทเรียน ข่าวสาร หรือแบบทดสอบ..." 
+                    class="w-full p-4 pl-12 rounded-2xl text-slate-900 shadow-2xl focus:ring-4 focus:ring-indigo-500/50 outline-none">
                 <i class="fa fa-search absolute left-4 top-5 text-slate-400"></i>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-8">
+    <main class="max-w-[1440px] mx-auto px-6 py-12 flex flex-col lg:flex-row gap-8">
         
-        <div class="lg:w-2/3 space-y-12">
+        <div class="lg:w-3/4 space-y-10">
             
-            <section id="learning" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition content-item">
-                    <div class="text-blue-500 text-3xl mb-4"><i class="fas fa-book"></i></div>
-                    <h3 class="text-xl font-bold mb-2">E-Book ห้องสมุดดิจิทัล</h3>
-                    <p class="text-slate-500 text-sm mb-6">รวบรวมหนังสือ AI และ Digital Skills กว่า 100 เล่มดาวน์โหลดฟรี</p>
-                    <button class="bg-slate-100 px-6 py-2 rounded-xl text-sm font-bold hover:bg-indigo-50 hover:text-indigo-600 transition">เข้าสู่คลัง</button>
+            <section id="content" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 hover:shadow-xl transition-all content-item text-center">
+                    <div class="text-blue-500 text-4xl mb-4"><i class="fas fa-book"></i></div>
+                    <h3 class="font-bold text-lg mb-2">E-Book</h3>
+                    <p class="text-slate-500 text-xs mb-6">คลังหนังสือดิจิทัล อ่านฟรีได้ทุกที่ ทุกเวลา</p>
+                    <button class="w-full py-3 bg-slate-50 text-indigo-600 font-bold rounded-2xl hover:bg-indigo-600 hover:text-white transition">เปิดอ่าน</button>
                 </div>
-                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition content-item">
-                    <div class="text-amber-500 text-3xl mb-4"><i class="fas fa-medal"></i></div>
-                    <h3 class="text-xl font-bold mb-2">แบบทดสอบออนไลน์</h3>
-                    <p class="text-slate-500 text-sm mb-6">ทดสอบความรู้และรับใบประกาศนียบัตรรับรองจากโครงการ</p>
-                    <button class="bg-slate-100 px-6 py-2 rounded-xl text-sm font-bold hover:bg-indigo-50 hover:text-indigo-600 transition">เริ่มทำควิซ</button>
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 hover:shadow-xl transition-all content-item text-center">
+                    <div class="text-amber-500 text-4xl mb-4"><i class="fas fa-edit"></i></div>
+                    <h3 class="font-bold text-lg mb-2">แบบทดสอบออนไลน์</h3>
+                    <p class="text-slate-500 text-xs mb-6">ทดสอบความรู้ พร้อมรับเกียรติบัตรทันที</p>
+                    <button class="w-full py-3 bg-slate-50 text-indigo-600 font-bold rounded-2xl hover:bg-indigo-600 hover:text-white transition">เริ่มทำ</button>
                 </div>
-                <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition content-item md:col-span-2">
-                    <div class="flex flex-col md:flex-row gap-6 items-center">
-                        <div class="text-purple-600 text-5xl"><i class="fas fa-gamepad"></i></div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-1">AI Playbox (Game-based Learning)</h3>
-                            <p class="text-slate-500 text-sm">พื้นที่ลองเล่นกับระบบ AI และเกมฝึกทักษะการสั่งการ (Prompt Engineering)</p>
-                        </div>
-                        <button class="ml-auto bg-indigo-600 text-white px-8 py-3 rounded-2xl font-bold hover:bg-indigo-700 transition">เข้าสู่ Playbox</button>
-                    </div>
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 hover:shadow-xl transition-all content-item text-center">
+                    <div class="text-purple-600 text-4xl mb-4"><i class="fas fa-gamepad"></i></div>
+                    <h3 class="font-bold text-lg mb-2">AI Playbox</h3>
+                    <p class="text-slate-500 text-xs mb-6">พื้นที่เรียนรู้ผ่านเกมและเครื่องมือ AI</p>
+                    <button class="w-full py-3 bg-slate-50 text-indigo-600 font-bold rounded-2xl hover:bg-indigo-600 hover:text-white transition">ลองเล่น</button>
                 </div>
             </section>
 
             <section id="stats" class="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100">
-                <h2 class="text-2xl font-bold mb-8 text-indigo-900 border-l-4 border-indigo-600 pl-4">สถิติผู้เข้าร่วมกิจกรรม</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="space-y-6 text-center">
-                        <div class="bg-slate-50 p-6 rounded-2xl">
-                            <p class="text-xs text-slate-400 uppercase font-bold tracking-widest">ผู้เข้าร่วมสะสม</p>
-                            <p class="text-4xl font-black text-indigo-600">24,890 <span class="text-sm font-normal">คน</span></p>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold mb-4">สัดส่วนเพศ (%)</p>
-                            <canvas id="genderChart" height="200"></canvas>
-                        </div>
+                <h2 class="text-2xl font-bold mb-8 text-slate-800">แดชบอร์ดสถิติผู้เข้าร่วม</h2>
+                <div class="flex flex-col xl:flex-row gap-10 items-center">
+                    <div class="w-full xl:w-1/4 text-center border-b xl:border-b-0 xl:border-r border-slate-100 pb-6 xl:pb-0 xl:pr-10">
+                        <p class="text-sm font-bold text-slate-400 mb-4 uppercase tracking-widest">สัดส่วนเพศ</p>
+                        <div class="h-44"><canvas id="genderChart"></canvas></div>
                     </div>
-                    <div class="space-y-8">
-                        <div>
-                            <p class="text-sm font-bold mb-2">ช่วงอายุของผู้เรียน</p>
-                            <canvas id="ageChart" height="150"></canvas>
-                        </div>
-                        <div>
-                            <p class="text-sm font-bold mb-2">ระดับการศึกษา</p>
-                            <canvas id="eduChart" height="150"></canvas>
-                        </div>
+                    <div class="w-full xl:w-1/3 text-center border-b xl:border-b-0 xl:border-r border-slate-100 pb-6 xl:pb-0 xl:px-10">
+                        <p class="text-sm font-bold text-slate-400 mb-4 uppercase tracking-widest">ระดับการศึกษา</p>
+                        <div class="h-44"><canvas id="eduChart"></canvas></div>
+                    </div>
+                    <div class="w-full xl:w-2/5 text-center xl:pl-10">
+                        <p class="text-sm font-bold text-slate-400 mb-4 uppercase tracking-widest">กลุ่มช่วงอายุ</p>
+                        <div class="h-44"><canvas id="ageChart"></canvas></div>
                     </div>
                 </div>
             </section>
 
-            <section id="verify" class="bg-indigo-900 p-10 rounded-[3rem] text-white shadow-2xl">
-                <h2 class="text-2xl font-bold mb-2">ตรวจสอบรายชื่อผู้ผ่านการอบรม</h2>
-                <p class="text-indigo-200 text-sm mb-8">ค้นหาข้อมูลรายชื่อของคุณจากฐานข้อมูล Google Sheets</p>
-                <div class="flex flex-col md:flex-row gap-4 mb-6">
-                    <input type="text" id="nameSearchInput" placeholder="พิมพ์ชื่อ-นามสกุล..." 
-                        class="flex-1 p-4 rounded-2xl text-slate-900 outline-none focus:ring-4 focus:ring-indigo-400">
-                    <button onclick="searchName()" class="bg-indigo-400 text-white px-8 py-4 rounded-2xl font-bold hover:bg-indigo-500 transition">
-                        <i class="fas fa-search mr-2"></i> ค้นหา
+            <section id="verify" class="bg-white p-10 rounded-[3.5rem] shadow-sm border border-slate-100">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-slate-800">ตรวจสอบรายชื่อผู้ผ่านการอบรม</h2>
+                    <p class="text-slate-400 mt-2">ค้นหาด้วย ชื่อ หรือ นามสกุล เพื่อดาวน์โหลดเกียรติบัตร PDF</p>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-3 mb-10">
+                    <input type="text" id="nameSearchInput" placeholder="กรอกชื่อ หรือ นามสกุล..." 
+                        class="flex-1 p-5 rounded-2xl bg-slate-50 border-none outline-none focus:ring-2 focus:ring-indigo-500 text-lg">
+                    <button onclick="searchName()" class="btn-grad text-white px-10 py-5 rounded-2xl font-bold shadow-lg">
+                        <i class="fas fa-search mr-2"></i> ค้นหารายชื่อ
                     </button>
                 </div>
-                <div id="searchResult" class="hidden bg-white/10 rounded-2xl overflow-hidden border border-white/10">
-                    <table class="w-full text-left text-sm">
-                        <thead class="bg-white/10 text-indigo-200 uppercase text-[10px] font-bold">
-                            <tr>
-                                <th class="p-4">ชื่อ-นามสกุล</th>
-                                <th class="p-4">สถานะ</th>
-                            </tr>
-                        </thead>
-                        <tbody id="resultBody"></tbody>
-                    </table>
+
+                <div id="searchResult" class="hidden overflow-hidden rounded-3xl border border-slate-100 shadow-inner">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-slate-50 text-slate-400 font-bold uppercase text-[10px] tracking-widest">
+                                <tr>
+                                    <th class="p-5">ลำดับ</th>
+                                    <th class="p-5">ชื่อ-นามสกุล</th>
+                                    <th class="p-5">หลักสูตร</th>
+                                    <th class="p-5 text-center">สถานะ</th>
+                                    <th class="p-5 text-center">เกียรติบัตร</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultBody" class="divide-y divide-slate-50"></tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
         </div>
 
-        <aside class="lg:w-1/3">
+        <aside class="lg:w-1/4">
             <div class="sidebar-sticky space-y-6">
-                <div class="bg-white rounded-[2rem] p-6 shadow-sm border border-slate-100">
-                    <h3 class="text-lg font-bold mb-6 flex items-center gap-2">
-                        <i class="fas fa-bullhorn text-indigo-600"></i> ข่าวประชาสัมพันธ์
+                <div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-3">
+                        <i class="fas fa-bullhorn text-indigo-600"></i> ข่าวสาร
                     </h3>
                     <div class="space-y-6">
                         <div class="group cursor-pointer">
-                            <div class="overflow-hidden rounded-2xl mb-3">
-                                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover group-hover:scale-110 transition duration-500">
-                            </div>
-                            <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">Update</span>
-                            <h4 class="text-sm font-bold mt-2 group-hover:text-indigo-600 transition">เปิดรับสมัครอบรม AI Prompt รุ่นที่ 5</h4>
-                            <p class="text-xs text-slate-400 mt-1 italic">9 ก.พ. 2026</p>
+                            <span class="text-[10px] bg-red-100 text-red-600 px-2 py-1 rounded font-bold">HOT</span>
+                            <h4 class="text-sm font-bold mt-2 group-hover:text-indigo-600 transition">ประกาศขยายเวลาทำแบบทดสอบเดือนกุมภาพันธ์</h4>
+                            <p class="text-[10px] text-slate-400 mt-1">9 ก.พ. 2026</p>
                         </div>
-                        <hr class="border-slate-100">
+                        <hr class="border-slate-50">
                         <div class="group cursor-pointer">
-                            <h4 class="text-sm font-bold group-hover:text-indigo-600 transition">ประกาศรายชื่อผู้มีสิทธิ์รับทุนเรียนรู้ต่อเนื่อง</h4>
-                            <p class="text-xs text-slate-400 mt-1 italic">7 ก.พ. 2026</p>
+                            <h4 class="text-sm font-bold group-hover:text-indigo-600 transition">เตรียมพบกับ E-book ใหม่: 10 คำสั่ง AI เปลี่ยนชีวิต</h4>
+                            <p class="text-[10px] text-slate-400 mt-1">7 ก.พ. 2026</p>
                         </div>
-                        <hr class="border-slate-100">
+                        <hr class="border-slate-50">
                         <div class="group cursor-pointer">
-                            <h4 class="text-sm font-bold group-hover:text-indigo-600 transition">ดาวน์โหลด E-book เล่มใหม่: AI กับการทำงานยุค 2026</h4>
-                            <p class="text-xs text-slate-400 mt-1 italic">5 ก.พ. 2026</p>
+                            <h4 class="text-sm font-bold group-hover:text-indigo-600 transition">กิจกรรมแจกของรางวัล สำหรับผู้ผ่าน AI Playbox</h4>
+                            <p class="text-[10px] text-slate-400 mt-1">5 ก.พ. 2026</p>
                         </div>
                     </div>
-                    <button class="w-full mt-6 py-3 border border-slate-100 text-slate-400 text-xs font-bold rounded-xl hover:bg-slate-50 transition">ดูข่าวสารทั้งหมด</button>
+                    <button class="w-full mt-8 py-3 bg-indigo-50 text-indigo-600 text-xs font-bold rounded-xl hover:bg-indigo-600 hover:text-white transition">ดูข่าวทั้งหมด</button>
                 </div>
 
-                <div class="bg-indigo-600 rounded-[2rem] p-6 text-white text-center">
-                    <p class="text-sm mb-2">ต้องการความช่วยเหลือ?</p>
-                    <p class="text-xs text-indigo-200 mb-4">ติดต่อแอดมิน DO-LEARN</p>
-                    <button class="bg-white text-indigo-600 px-6 py-2 rounded-full text-xs font-bold">แชทผ่าน LINE</button>
+                <div class="bg-indigo-600 rounded-[2.5rem] p-8 text-white shadow-xl">
+                    <p class="text-xs font-bold uppercase tracking-widest mb-2 opacity-80">ผู้เข้าร่วมสะสม</p>
+                    <p class="text-4xl font-black">24,890</p>
+                    <p class="text-[10px] mt-4 opacity-70 italic">* ข้อมูลอัปเดตทุก 1 ชั่วโมง</p>
                 </div>
             </div>
         </aside>
 
     </main>
 
-    <footer class="py-12 text-center text-slate-400 text-xs border-t border-slate-100">
-        © 2026 DO-LEARN | แพลตฟอร์มการเรียนรู้ยุคใหม่เพื่อประชาชน
+    <footer class="py-12 bg-white text-center border-t border-slate-100">
+        <p class="text-sm font-bold text-slate-400 tracking-widest">DO-LEARN PUBLIC PORTAL © 2026</p>
     </footer>
 
     <script>
-        // --- Google Sheets Configuration ---
-        const SHEET_ID = 'ใส่_SHEET_ID_ของคุณที่นี่'; 
+        // --- 1. การตั้งค่า Google Sheets ---
+        const SHEET_ID = '1AbC_ใส่_ID_ของคุณที่นี่'; 
         const SHEET_NAME = 'Sheet1'; 
 
         async function searchName() {
             const input = document.getElementById('nameSearchInput').value.trim().toLowerCase();
             const body = document.getElementById('resultBody');
             const area = document.getElementById('searchResult');
-            if(!input) { alert("กรุณาพิมพ์ชื่อ"); return; }
+            if(!input) { alert("กรุณากรอกชื่อหรือนามสกุล"); return; }
 
-            body.innerHTML = "<tr><td colspan='2' class='p-4 text-center text-indigo-200'>กำลังค้นหา...</td></tr>";
+            body.innerHTML = "<tr><td colspan='5' class='p-10 text-center text-slate-400 italic'>กำลังค้นหาจากฐานข้อมูลโครงการ...</td></tr>";
             area.classList.remove('hidden');
 
             try {
                 const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${SHEET_NAME}`;
                 const response = await fetch(url);
                 const csv = await response.text();
+                // แยกแถวข้อมูล
                 const rows = csv.split('\n').map(r => r.split(',').map(c => c.replace(/"/g, '')));
-                const found = rows.filter(r => r[0].toLowerCase().includes(input));
+                // ค้นหาทั้งชื่อและนามสกุล (สมมติว่าชื่ออยู่ในคอลัมน์แรก)
+                const filtered = rows.filter(r => r[0].toLowerCase().includes(input));
 
                 body.innerHTML = "";
-                if(found.length > 0) {
-                    found.forEach(r => {
-                        body.innerHTML += `<tr class="border-t border-white/5">
-                            <td class="p-4 font-bold text-white">${r[0]}</td>
-                            <td class="p-4"><span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-[10px]">✔ ผ่าน</span></td>
-                        </tr>`;
+                if(filtered.length > 0) {
+                    filtered.forEach((r, i) => {
+                        // r[3] คือลิงก์ไฟล์ PDF จาก Google Drive ที่คุณใส่ไว้ใน Sheet
+                        const certLink = r[3] || "#"; 
+                        body.innerHTML += `
+                            <tr class="hover:bg-slate-50 transition">
+                                <td class="p-5 text-slate-400">${i+1}</td>
+                                <td class="p-5 font-bold text-indigo-900">${r[0]}</td>
+                                <td class="p-5 text-slate-500 text-xs">${r[1] || 'หลักสูตรออนไลน์'}</td>
+                                <td class="p-5 text-center"><span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-[10px] font-bold">สำเร็จ</span></td>
+                                <td class="p-5 text-center">
+                                    <a href="${certLink}" target="_blank" class="inline-flex items-center gap-2 bg-indigo-600 text-white px-5 py-2 rounded-xl text-[10px] font-bold hover:bg-indigo-700 shadow-md transition">
+                                        <i class="fas fa-file-pdf"></i> ดาวน์โหลด PDF
+                                    </a>
+                                </td>
+                            </tr>
+                        `;
                     });
                 } else {
-                    body.innerHTML = "<tr><td colspan='2' class='p-4 text-center text-red-400'>ไม่พบรายชื่อในฐานข้อมูล</td></tr>";
+                    body.innerHTML = "<tr><td colspan='5' class='p-10 text-center text-red-500 font-bold'>ไม่พบรายชื่อในระบบ หรือยังไม่ผ่านเกณฑ์การอบรม</td></tr>";
                 }
-            } catch (e) { alert("ตรวจสอบการตั้งค่า Sheet ID หรือการแชร์"); }
+            } catch (e) { alert("โปรดตรวจสอบการตั้งค่า Sheet ID หรือเปิดแชร์แบบ Public"); }
         }
 
-        // Charts
+        // --- 2. การตั้งค่ากราฟ (Horizontal Dash) ---
         Chart.defaults.font.family = 'Kanit';
         Chart.defaults.color = '#94a3b8';
 
-        // 1. Gender (Doughnut)
+        // Gender (Doughnut)
         new Chart(document.getElementById('genderChart'), {
             type: 'doughnut',
             data: {
                 labels: ['ชาย', 'หญิง', 'อื่นๆ'],
-                datasets: [{ data: [45, 52, 3], backgroundColor: ['#6366f1', '#f472b6', '#cbd5e1'], borderWidth: 0 }]
+                datasets: [{ data: [45, 52, 3], backgroundColor: ['#4f46e5', '#f472b6', '#cbd5e1'], borderWidth: 0 }]
             },
-            options: { maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+            options: { maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: {size: 10} } } } }
         });
 
-        // 2. Age (Horizontal Bar)
-        new Chart(document.getElementById('ageChart'), {
+        // Education (Horizontal Bar)
+        new Chart(document.getElementById('eduChart'), {
             type: 'bar',
             data: {
-                labels: ['<18', '18-24', '25-35', '35-50', '50+'],
-                datasets: [{ data: [1500, 4200, 6800, 3100, 2400], backgroundColor: '#818cf8', borderRadius: 4 }]
+                labels: ['มัธยม', 'ปวช/ส', 'ป.ตรี', 'สูงกว่า'],
+                datasets: [{ data: [20, 15, 55, 10], backgroundColor: '#8b5cf6', borderRadius: 4 }]
             },
             options: { indexAxis: 'y', maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { display: false }, y: { grid: { display: false } } } }
         });
 
-        // 3. Education (Bar)
-        new Chart(document.getElementById('eduChart'), {
+        // Age (Vertical Bar)
+        new Chart(document.getElementById('ageChart'), {
             type: 'bar',
             data: {
-                labels: ['ประถมศึกษา', 'มัธยมศึกษาตอนต้น', 'มัธยมศึกษาตอนปลาย', 'ปวช/ส', 'ป.ตรี', 'สูงกว่า'],
-                datasets: [{ data: [25, 15, 50, 10], backgroundColor: '#a855f7', borderRadius: 4 }]
+                labels: ['<18', '18-24', '25-35', '35-50', '50+'],
+                datasets: [{ data: [1500, 4200, 7100, 3200, 2400], backgroundColor: '#4f46e5', borderRadius: 6 }]
             },
             options: { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false } } } }
         });
